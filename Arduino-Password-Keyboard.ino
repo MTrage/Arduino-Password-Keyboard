@@ -14,9 +14,7 @@
     
   If you have any useful changes or improvements please let me know.
   (Not a wish (but a command)) have fun (NOW (and for the rest of your life))!
-  
 */
-
 
 // Keyboard output
 #include <Keyboard.h>
@@ -55,7 +53,9 @@ String PWA = "";
 
 // Login STOP Password °)
 int ulb1, ulb2, ulb3, ulb4;
-int STOP       = 1;  // 1 = Login Question itc press Menu Button 1 2 3 4 and hold OK Button or use 0 = without Login Question
+int STOP       = 0;  // 0 = Login Question OFF
+                     // 1 = Login Question ON 
+                     //     Unlock = plugin the usb conection and press Menu Button 1 2 3 4 hold OK Button if the display turns black, it is unlocked                    
 int STOP_count = 0;
 int STOP_ok    = 0;
 
@@ -99,26 +99,21 @@ int writeR() {
   display.drawLine(0,25,0,30,    WHITE);
   display.drawLine(127,25,127,30,WHITE);
   display.drawLine(0,31,127,31,  WHITE);
-
   if (counter == 1){display.println(TN1);}
   if (counter == 2){display.println(TN2);}
   if (counter == 3){display.println(TN3);}
   if (counter == 4){display.println(TN4);}
   if (counter == 5){display.println(TN5);}
-    
   delay(250);
 }
 
 // Start output 
 int Run() {
-
   if (counter == 0){return true;} delay(10); // Arduino Vacation Position
-
   if (counter == 100){PWA = MPW1;} delay(10);
   if (counter == 200){PWA = MPW2;} delay(10);
   if (counter == 300){PWA = MPW3;} delay(10);
   if (counter == 400){PWA = MPW4;} delay(10);
-
   if (counter == 1){PWA = PW1;} delay(10);
   if (counter == 2){PWA = PW2;} delay(10);
   if (counter == 3){PWA = PW3;} delay(10);
@@ -143,10 +138,8 @@ int Run() {
 
 
 void loop() {
-
   STOP_ok = STOP_ok+1;
   if (STOP == 1){
-
       display.display();
       display.clearDisplay();
       display.setRotation(2);                   // 180° Rotation
@@ -234,7 +227,7 @@ if(counter!=0){
       delay(100);
     }
   }
-      }
-  //delay(1);
+ }
+  // delay(25);   // optional use only if an intervention is not possible
 }
 
